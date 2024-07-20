@@ -1,0 +1,247 @@
+@font-face {
+  font-family: 'AvatarFont';
+  src: url('./toruk-sc-font/TorukscRegular-z8MA1.ttf') format('ttf'),
+       url('fonts/avatar-font.woff') format('ttf');
+  /* Add more file formats if needed */
+}
+.listfont{
+	font-family: 'AvatarFont';
+}
+div {
+  margin: auto;
+}
+
+.firstbackground {
+	height: 100vh;
+  width: 95%;
+  background-image: url('./images/halo.jpg');
+  background-size: cover; /* Adjusts the background size to cover the entire container */
+  background-position: center; /* Centers the background image within the container */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  border-radius: 20px;
+  padding: 20px;
+   margin: auto;
+  color: #fff; /* Optional: Set text color to make it readable on the background */
+}
+.secondbackground {
+  height: 50vh;
+  width: 94%;
+  position: relative;
+  background-image: url('./images/backlayer.jpg');
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  border: 2px solid #AAB;
+  color: #fff;
+  padding: 20px;
+  margin: auto;
+}
+.thirdbackground {
+		height: auto;
+	width: 94%;
+	position: relative;
+  background-image: url('./images/gamer.jpg');
+  background-size: cover; /* Adjusts the background size to cover the entire container */
+  background-position: center; /* Centers the background image within the container */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  padding: 10px;
+  overflow: hidden; 
+  border-radius: 20px;
+  margin: auto;
+  padding: 20px;
+  color: #fff; /* Optional: Set text color to make it readable on the background */
+}
+.background-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust the opacity as needed */
+    pointer-events: true; /* This allows clicks to go through the overlay to the content below */
+}
+.gradient-container {
+      /* Set the gradient background */
+      background: linear-gradient(to bottom, skyblue, ivory);
+      
+      /* Set the border properties */
+      border: 2px solid #746000; /* Purple border */
+      border-radius: 10px; /* Optional: Adds rounded corners */
+      border-style: groove;
+      /* Set padding and margin for spacing */
+      
+	  
+ }
+.content-container{
+      /* Set padding and margin for spacing */
+      padding: 20px;
+      margin: 20px;
+}
+.head-container {
+  background-image: url('./images/synthwave.jpg');
+   /* Adjusts the background size to cover the entire container */
+  background-position: center 50%; /* Centers the background image within the container */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border: 2px solid #746000;
+  border-radius: 10px; 
+  padding: 20px;
+  margin: 20px;
+  transition: height 0.5s ease; /* Add a smooth transition effect */
+}
+
+#linearmove {
+  background-position: 0 0; /* Set the initial background position */
+  animation: horizon 30s linear infinite;
+}
+
+@keyframes horizon {
+  
+  0% {
+    background-position: 50% 35%; /* Starting position */
+
+  }
+  25% {
+    background-position: 75% 50%; /* Starting position */
+
+  }
+  50% {
+      background-position: 100% 70%; /* Ending position (fully scrolled to the right) */
+  }
+  75% {
+    background-position: 0% 70%; /* Starting position */
+  }
+  100% {
+    background-position: 50% 35%; /* Starting position */
+
+  }
+}
+
+.head-container.shrink {
+  display: none;/* Adjust the height when the container is shrunk */
+  transition: display 0.5s ease; /* Add a smooth transition effect */
+}
+.head-container.expand {
+  display: block; /* Adjust the height when the container is shrunk */
+  transition: display 0.5s ease; /* Add a smooth transition effect */
+}
+.small-game{
+	height: 200px;
+	width: 400px;
+	padding: 10px;
+	border: 3px solid slateblue;
+	border-radius: 20px;
+	background: purple;
+}
+h1 {
+	text-align: left;
+	color: black;
+  font-size: 400%;
+}
+h4 {
+	text-align: left;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.menu-buttons {
+	padding: 0.5%;
+	background-color: gainsboro;
+	border: 4px solid darkslateblue; /* Purple border */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+	border-style: outset;
+  font-family: 'Silkscreen' ;
+  font-size: 110%;
+	text-decoration: none;
+	
+	&:hover {
+    background-color: #007bff;
+    /* other styles for hover state */
+	}
+}
+.toggle{
+	margin-left: 40px;
+	color: yellow;
+	padding: 10px;
+	background-color: maroon;
+	border: 4px solid #786000; /* Purple border */
+    border-radius: 50px; /* Optional: Adds rounded corners */
+	border-style: outset;
+	position: -webkit-sticky;
+	top: 50px;
+	z-index: 3;
+	position: sticky;
+}
+body{
+  background-image: url('./images/backlayer2.jpg');
+  background-size: cover; /* Adjusts the background size to cover the entire container */
+  background-position: center; /* Centers the background image within the container */
+	
+}
+.image-row {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks */
+  padding: 10px; /* Optional padding for spacing */
+}
+
+.image-row img {
+  width: 400px; /* Set the width of each image */
+  height: 200px; /* Maintain aspect ratio */
+  margin-right: 10px; /* Optional margin for spacing between images */
+}
+.image-row::-webkit-scrollbar {
+  width: 8px; /* for Chrome, Safari, and Opera */
+}
+
+.image-row::-webkit-scrollbar-thumb {
+  background-color: rgb(110, 110, 107); /* for Chrome, Safari, and Opera */
+  border-radius: 20px;
+}
+
+.image-row::-webkit-scrollbar-track {
+  background-color: #112; /* for Chrome, Safari, and Opera */
+  border-radius: 20px;
+}
+
+
+.box {
+  --border-size: 3px;
+  --border-angle: 0turn;
+  padding: 10px;
+  width: 400px; /*60vmin;*/
+  height: 200px; /*//50vmin;*/
+  background-image: conic-gradient(from var(--border-angle), darkblue, #112 50%, darkblue), conic-gradient(from var(--border-angle), transparent 20%, cyan, darkblue);
+  background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+	-webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+@-webkit-keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+.box:hover {
+	  -webkit-animation: bg-spin 2s linear infinite;
+          animation: bg-spin 2s linear infinite;
+  
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 1turn;
+}
