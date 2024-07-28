@@ -10,7 +10,43 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="j32b.png" type="image/png"  >
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script>
+			function preloadImages() {
+				const totalImages = 240;
+				const batchSize = 20;
+				const batches = Math.ceil(totalImages / batchSize);
+				let currentBatch = 0;
+
+				function loadBatch() {
+					if (currentBatch >= batches) return;
+
+					const start = currentBatch * batchSize + 1;
+					const end = Math.min((currentBatch + 1) * batchSize, totalImages);
+
+					for (let i = start; i <= end; i++) {
+						const img = new Image();
+						img.src = `./blender/${i}.jpg`;
+						img.onerror = () => console.warn(`Failed to load image: ${i}.jpg`);
+					}
+
+					currentBatch++;
+					requestIdleCallback(loadBatch, { timeout: 1000 });
+				}
+
+				requestIdleCallback(loadBatch, { timeout: 1000 });
+			}
+			// Start preloading immediately
+			preloadImages();
+		</script>
+		<!-- Preload critical CSS -->
+		<link rel="preload" href="assets/css/main.css" as="style">
+		<!-- Preload critical JavaScript -->
+		<link rel="preload" href="assets/js/main.js" as="script">
+		<!-- Preconnect to external domains -->
+		<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
 	</head>
 	<body class="is-preload">
 		
@@ -77,16 +113,16 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="assets/js/jquery.min.js" defer></script>
+			<script src="assets/js/jquery.scrollex.min.js" defer></script>
+			<script src="assets/js/jquery.scrolly.min.js" defer></script>
+			<script src="assets/js/browser.min.js" defer></script>
+			<script src="assets/js/breakpoints.min.js" defer></script>
+			<script src="assets/js/util.js" defer></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+			<script src="assets/js/main.js" defer></script>
 
 	</body>
 </html>
