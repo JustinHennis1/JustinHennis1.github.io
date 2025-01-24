@@ -12,34 +12,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="j32b.png" type="image/png"  >
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script>
-			function preloadImages() {
-				const totalImages = 240;
-				const batchSize = 20;
-				const batches = Math.ceil(totalImages / batchSize);
-				let currentBatch = 0;
-
-				function loadBatch() {
-					if (currentBatch >= batches) return;
-
-					const start = currentBatch * batchSize + 1;
-					const end = Math.min((currentBatch + 1) * batchSize, totalImages);
-
-					for (let i = start; i <= end; i++) {
-						const img = new Image();
-						img.src = `./blender/${i}.jpg`;
-						img.onerror = () => console.warn(`Failed to load image: ${i}.jpg`);
-					}
-
-					currentBatch++;
-					requestIdleCallback(loadBatch, { timeout: 1000 });
-				}
-
-				requestIdleCallback(loadBatch, { timeout: 1000 });
-			}
-			// Start preloading immediately
-			preloadImages();
-		</script>
+		
 		<!-- Preload critical CSS -->
 		<link rel="preload" href="assets/css/main.css" as="style">
 		<!-- Preload critical JavaScript -->
@@ -76,27 +49,48 @@
 				<!-- Main -->
 					<article id="main">
 
-						<div class="canvas-container">
-							<canvas class="canvas"></canvas>
-							<h1 class="ball-text">
-								Pr
-								<span class="clear-text">o</span>
-								jects
+							<h1 style=" text-align: center;">
+								Projects
 							</h1>
-							<div class="ball-proj">
-								<a href="https://movidex.justinhennis.com" target="_blank" class="button small primary">Movidex</a>
+							<div class="prow">
+								<div class="pbox">
+									<div >
+										<a href="https://movidex.justinhennis.com" target="_blank" class="button small secondary">Movidex</a>
+									</div>
+								</div>
+								<div class="pbox">
+									<div >
+										<a href="https://fitguru.justinhennis.com" target="_blank" class="button small secondary">FitGuru</a>
+									</div>
+								</div>
 							</div>
-							<div class="ball-proj2">
-								<a href="https://fitguru.justinhennis.com" target="_blank" class="button small primary">FitGuru</a>
+
+							<div class="prow">
+								<div class="pbox">
+									<div>
+										<a href="https://pantrytracker.justinhennis.com" target="_blank" class="button small secondary">PantryTracker</a>
+									</div>
+								</div>
+								<div class="pbox">
+									<div>
+										<a href="https://traverse.justinhennis.com" target="_blank" class="button small secondary">Traverse</a>
+									</div>
+								</div>
 							</div>
-							<div class="ball-proj3">
-								<a href="https://pantrytracker.justinhennis.com" target="_blank" class="button small primary">PantryTracker</a>
+
+							<div class="prow">
+								<div class="pbox">
+									<div>
+										<a href="https://github.com/JustinHennis1/VULN" target="_blank" class="button small secondary">V.U.L.N</a>
+									</div>
+								</div>
+								
 							</div>
-						</div>
+						
 					</article>
 
 				<!-- Footer -->
-					<footer id="footer">
+					<footer id="footer" style="position: fixed; bottom: 0px; width:100%">
 						<ul class="icons">
 							<li><a href="https://www.linkedin.com/in/justin-hennis" class="icon brands fa-linkedin fa-lg"><span class="label">LinkedIn</span></a></li>
 							<li><a href="https://x.com/NightFlamefire" class="icon brands fa-twitter fa-lg"><span class="label">Twitter</span></a></li>

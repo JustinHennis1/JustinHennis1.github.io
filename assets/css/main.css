@@ -4073,48 +4073,6 @@ input, select, textarea {
 		height: 100vh;
 	}
 
-	.ball-text {
-		position: fixed;
-		z-index: 2;
-		color: black;
-		font-size: 7vw;
-		left: 46.5%;
-		top: 28%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		width: 100%;
-	}
-
-	.ball-proj{
-		position: fixed;
-		z-index: 2;
-		left: 46.5%;
-		top: 28%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		width: 100%;
-	}
-
-	.ball-proj2{
-		position: fixed;
-		z-index: 2;
-		left: 20.5%;
-		top: 38%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		width: 100%;
-	}
-
-	.ball-proj3{
-		position: fixed;
-		z-index: 4;
-		left:70%;
-		top: 68%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		width: 100%;
-	}
-
 	.clear-text {
 		opacity: 0;
 		padding: 0;
@@ -4145,4 +4103,24 @@ input, select, textarea {
 	.fade-out {
 		opacity: 0;
 		transform: translateY(-20px);
+	}
+
+	.prow {
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		height: 10vh;
+	}
+
+	.pbox {
+		display: block;
+		padding: 5px;
+		background-color: transparent;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0px 0px 15px 2px black;
+		
+		
 	}
