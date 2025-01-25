@@ -4111,7 +4111,7 @@ input, select, textarea {
 		display: flex;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 20px;
-		height: 10vh;
+		height: 60px;
 	}
 
 	.pbox {
