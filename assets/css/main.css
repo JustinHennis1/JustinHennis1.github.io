@@ -3036,7 +3036,7 @@ input, select, textarea {
 			}
 
 		.wrapper.style2 {
-			background-color: #2e3842;
+			background-color: #171f26;
 		}
 
 		.wrapper.style3 {
@@ -3411,7 +3411,7 @@ input, select, textarea {
 		-ms-transition: -ms-transform 0.5s ease;
 		transition: transform 0.5s ease;
 		-webkit-overflow-scrolling: touch;
-		background: #21b2a6;
+		background: #111;
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;
@@ -3433,6 +3433,13 @@ input, select, textarea {
 				border-top: solid 1px rgba(0, 0, 0, 0.125);
 				margin: 0.5em 0 0 0;
 				padding: 0.5em 0 0 0;
+				transition: border-bottom 2s;
+				border-bottom: 0.5px solid #222;
+			}
+
+			#menu ul > li:hover {
+				border-bottom: 0.5px solid white;
+				
 			}
 
 				#menu ul > li:first-child {
@@ -3505,7 +3512,7 @@ input, select, textarea {
 		-webkit-transition: background-color 0.2s ease;
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease;
-		background: #2e3842;
+		background: #171f26;
 		height: 3em;
 		left: 0;
 		line-height: 3em;
@@ -3754,7 +3761,7 @@ input, select, textarea {
 			-ms-transition-delay: 1.25s;
 			transition-delay: 1.25s;
 			content: '';
-			background: #2e3842;
+			background: #171f26;
 			display: block;
 			width: 100%;
 			height: 100%;
@@ -3874,10 +3881,10 @@ input, select, textarea {
 
 	#main > header {
 		padding: 12em 0 10em 0 ;
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
 		background-attachment: fixed;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -4024,10 +4031,10 @@ input, select, textarea {
 /* Landing */
 
 	body.landing #page-wrapper {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/b2.jpg");
 		background-attachment: fixed;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -4124,3 +4131,45 @@ input, select, textarea {
 		
 		
 	}
+	.carousel-container {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		background: transparent;
+		padding: 20px 0;
+	  }
+  
+	  .carousel {
+		display: flex;
+		width: max-content;
+		animation: scroll 10s linear infinite;
+	  }
+
+  
+	  .carousel img {
+		width: 250px;
+		height: 150px;
+		object-fit: contain;
+		border-radius: 10px;
+		margin-right: 20px;
+	  }
+  
+	  /* Smooth infinite scrolling animation */
+	  @keyframes scroll {
+		from {
+		  transform: translateX(0);
+		}
+		to {
+		  transform: translateX(-50%);
+		}
+	  }
+  
+	  /* Ensure seamless loop by duplicating content */
+	  .carousel-wrapper {
+		display: flex;
+		width: max-content;
+	  }
+
+	  .carousel-container:hover .carousel {
+		animation-play-state: paused;
+	  }
