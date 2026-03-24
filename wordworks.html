@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Word Works — Industrial Word Puzzle Game</title>
+
+<meta name="description" content="Word Works is a satisfying word puzzle game where you solve themed challenges, climb ranks, and expand your vocabulary.">
+
+<link rel="icon" href="assets/favicon.png">
+
+<style>
+
+:root{
+--bg:#0f172a;
+--panel:#1e293b;
+--panel2:#273449;
+--text:#e2e8f0;
+--muted:#94a3b8;
+--border:#334155;
+
+--accent:#22c55e;     /* green */
+--accent2:#38bdf8;    /* blue */
+
+--radius:16px;
+--max:1150px;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:system-ui,Segoe UI,Roboto,Arial;
+background:var(--bg);
+color:var(--text);
+}
+
+/* remove ALL link underlines */
+a{
+text-decoration:none;
+color:inherit;
+}
+
+/* animated gradient background */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 0%, rgba(56,189,248,.15), transparent 40%),
+radial-gradient(circle at 80% 10%, rgba(34,197,94,.15), transparent 40%);
+z-index:-2;
+}
+
+/* layout */
+.container{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
+
+/* header */
+header{
+position:sticky;
+top:0;
+background:rgba(15,23,42,.7);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+z-index:50;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 0;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo{
+width:40px;height:40px;border-radius:12px;
+background:linear-gradient(135deg,var(--accent2),var(--accent));
+display:grid;place-items:center;
+font-weight:700;
+box-shadow:0 0 20px rgba(56,189,248,.4);
+}
+
+.navlinks{display:flex;gap:18px;}
+.navlinks a{
+color:var(--muted);
+transition:.2s;
+}
+.navlinks a:hover{
+color:white;
+}
+
+/* buttons */
+.btn{
+padding:10px 16px;
+border-radius:12px;
+border:1px solid var(--border);
+background:var(--panel);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.2s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+.btn.primary{
+background:linear-gradient(135deg,var(--accent2),var(--accent));
+border:none;
+color:#022c22;
+}
+
+/* hero */
+.hero{padding:100px 0;}
+
+.heroGrid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:50px;
+align-items:center;
+}
+
+.hTitle{
+font-size:clamp(42px,5vw,64px);
+margin:0 0 10px;
+background:linear-gradient(135deg,var(--accent2),var(--accent));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hLead{
+color:var(--muted);
+max-width:500px;
+line-height:1.7;
+}
+
+/* card */
+.heroCard{
+background:rgba(30,41,59,.7);
+border:1px solid var(--border);
+border-radius:var(--radius);
+padding:20px;
+box-shadow:0 25px 60px rgba(0,0,0,.5);
+backdrop-filter:blur(12px);
+transition:.3s;
+}
+
+.heroCard:hover{
+transform:translateY(-6px);
+}
+
+/* centered image */
+.media{
+display:flex;
+justify-content:center;
+}
+
+.media img{
+max-width:260px;
+width:100%;
+border-radius:14px;
+box-shadow:0 10px 40px rgba(0,0,0,.6);
+transition:.3s;
+}
+
+.media img:hover{
+transform:scale(1.03);
+}
+
+/* stats */
+.statRow{
+margin-top:18px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.stat{
+background:var(--panel2);
+border-radius:12px;
+padding:14px;
+font-size:14px;
+text-align:center;
+transition:.2s;
+}
+
+.stat:hover{
+background:#334155;
+transform:translateY(-3px);
+}
+
+/* sections */
+section{padding:70px 0;}
+
+.sectionTitle{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.sectionLead{
+color:var(--muted);
+}
+
+/* gallery */
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:25px;
+}
+
+.shot{
+height:600px;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+transition:.3s;
+}
+
+.shot img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
+}
+
+.shot:hover img{
+transform:scale(1.08);
+}
+
+.shot:hover{
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+/* faq */
+details{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:12px;
+padding:14px;
+margin-bottom:12px;
+transition:.2s;
+}
+
+details:hover{
+background:#334155;
+}
+
+summary{
+cursor:pointer;
+font-weight:600;
+}
+
+/* support */
+#support a{
+color:var(--accent2);
+}
+
+/* footer */
+footer{
+border-top:1px solid var(--border);
+padding:30px 0;
+color:var(--muted);
+text-align:center;
+}
+
+/* fade-in animation */
+.fade-in{
+opacity:0;
+transform:translateY(20px);
+animation:fadeIn .8s ease forwards;
+}
+
+@keyframes fadeIn{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* responsive */
+@media(max-width:900px){
+.heroGrid{grid-template-columns:1fr;}
+.gallery{grid-template-columns:1fr;}
+.navlinks{display:none;}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<div class="nav">
+
+<div class="brand">
+<div class="logo">W</div>
+<div>
+<strong>Word Works</strong><br>
+<span style="font-size:12px;color:var(--muted)">Industrial Word Puzzle</span>
+</div>
+</div>
+
+<nav class="navlinks">
+<a href="#screens">Screens</a>
+<a href="#faq">FAQ</a>
+<a href="#support">Support</a>
+</nav>
+
+<div style="display:flex;gap:10px">
+<a class="btn">Google Play</a>
+<a class="btn primary">iOS</a>
+</div>
+
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="hero fade-in">
+<div class="container">
+<div class="heroGrid">
+
+<div>
+<h1 class="hTitle">Build words.<br>Climb the ranks.</h1>
+<p class="hLead">
+Discover hidden words, complete themed challenges, and rise through the ranks.
+</p>
+</div>
+
+<div class="heroCard">
+
+<div class="media">
+<img src="assets/wordworks/preview.png">
+</div>
+
+<div class="statRow">
+<div class="stat"><b>Thousands</b><br>possible words</div>
+<div class="stat"><b>Themed</b><br>puzzle packs</div>
+<div class="stat"><b>Ranks</b><br>to unlock</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="screens" class="fade-in">
+<div class="container">
+<h2 class="sectionTitle">Screenshots</h2>
+
+<div class="gallery">
+<div class="shot"><img src="assets/wordworks/ScreenShot-1.png"></div>
+<div class="shot"><img src="assets/wordworks/ScreenShot-6.png"></div>
+<div class="shot"><img src="assets/wordworks/ScreenShot-7.png"></div>
+</div>
+
+</div>
+</section>
+
+<section id="faq" class="fade-in">
+<div class="container">
+<h2 class="sectionTitle">FAQ</h2>
+
+<details>
+<summary>Does Word Works require internet?</summary>
+<p>No. All puzzles can be played offline.</p>
+</details>
+
+<details>
+<summary>Does the game collect personal data?</summary>
+<p>No personal data is collected.</p>
+</details>
+
+</div>
+</section>
+
+<section id="support" class="fade-in">
+<div class="container">
+<h2 class="sectionTitle">Support</h2>
+
+<p>Email: <a href="mailto:15hennisjustin@gmail.com">15hennisjustin@gmail.com</a></p>
+<p><a href="wwprivacy.html">Privacy Policy</a></p>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+© <span id="year"></span> Hennis Studios
+</div>
+</footer>
+
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
