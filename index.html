@@ -1,198 +1,964 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Justin Hennis</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="preload" as="image" href="images/me.jpg">
-		<link rel="preload" as="image" href="images/bwme.png">
-		<link rel="preload" as="image" href="images/portrait_myself.jpg">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="icon" href="j32b.png" type="image/png"  >
-	</head>
-	<body class="landing is-preload">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-1PKqXBz2ju2JcAerHKL0ldg0PT/1vr3LghYAtc59+9xy8e19QEtaNUyt1gprouyWnpOPqNJjL4gXMRMEpHYyLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hennis Studios</title>
+<meta name="description" content="Polished indie mobile apps built with passion — Word Works and City Run by an independent developer." />
+<meta property="og:title" content="Young Mobile App Developer" />
+<meta property="og:description" content="Two hand-crafted mobile games: Word Works - Unscramble and City Run - Rat Attack." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="icon" href="j32b.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Word Works - Unscramble",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "iOS",
+      "description": "A fun and challenging word puzzle game where players unscramble letters to form words."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "City Run - Rat Attack",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "iOS",
+      "description": "A fast-paced arcade runner where players navigate a chaotic city while avoiding obstacles and escaping attacking rats."
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --primary: #4F46E5;
+    --primary-light: #818CF8;
+    --primary-dark: #3730A3;
+    --accent: #22C55E;
+    --accent-dark: #16A34A;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface2: #F1F5F9;
+    --text: #0F172A;
+    --text-muted: #64748B;
+    --text-light: #94A3B8;
+    --border: rgba(15,23,42,0.08);
+    --border-strong: rgba(15,23,42,0.15);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+	--font-display: 'Playfair Display', serif;
+	--font-body: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,250,252,0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: 1.15rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--primary);
+    display: inline-block;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary) !important;
+    color: white !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 100px !important;
+    font-size: 0.875rem !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-1px); }
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px; border: none; background: none;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 64px; left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+    padding: 2rem 1.5rem;
+    flex-direction: column; gap: 1.5rem;
+    z-index: 99;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a {
+    font-size: 1.5rem; font-family: var(--font-display);
+    font-weight: 700; color: var(--text);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 1.5rem 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(79,70,229,0.09) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(34,197,94,0.07) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(79,70,229,0.08);
+    border: 1px solid rgba(79,70,229,0.2);
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--primary);
+    letter-spacing: 0.03em; text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  .hero-title span { color: var(--primary); }
+  .hero-subtitle {
+    font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
+    max-width: 480px; margin-bottom: 2rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 0.9375rem; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,70,229,0.3); }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-secondary:hover { background: var(--surface2); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn-accent { background: var(--accent); color: white; }
+  .btn-accent:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,197,94,0.3); }
+  .hero-phones {
+    position: relative; height: 480px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .phone {
+    position: absolute;
+    width: 180px; height: 360px;
+    border-radius: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .phone:hover { transform: translateY(-6px) scale(1.02) !important; }
+  .phone-1 {
+    transform: rotate(-6deg) translateX(-60px) translateY(10px);
+    animation: float1 4s ease-in-out infinite;
+    z-index: 2;
+  }
+  .phone-2 {
+    transform: rotate(4deg) translateX(60px) translateY(-10px);
+    animation: float2 4.5s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes float1 {
+    0%, 100% { transform: rotate(-6deg) translateX(-60px) translateY(10px); }
+    50% { transform: rotate(-6deg) translateX(-60px) translateY(-8px); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: rotate(4deg) translateX(60px) translateY(-10px); }
+    50% { transform: rotate(4deg) translateX(60px) translateY(8px); }
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 1rem;
+    font-family: var(--font-display);
+  }
+   .phone img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+   }
+  .phone-screen-ww {
+    background: linear-gradient(145deg, #EEF2FF 0%, #E0E7FF 100%);
+  }
+  .phone-screen-cr {
+    background: linear-gradient(145deg, #F0FDF4 0%, #DCFCE7 100%);
+  }
+  .phone-icon-large { font-size: 3rem; margin-bottom: 0.5rem; }
+  .phone-app-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; color: var(--primary); text-transform: uppercase; }
+  .phone-notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px;
+    background: var(--surface);
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+  .word-tiles {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 0.75rem;
+  }
+  .tile {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: white; border: 1.5px solid rgba(79,70,229,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; color: var(--primary);
+  }
+  .tile.filled { background: var(--primary); color: white; border-color: var(--primary); }
+  .city-elements { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .city-row { display: flex; gap: 4px; }
+  .building {
+    border-radius: 4px 4px 0 0;
+    background: rgba(34,197,94,0.4);
+    border: 1px solid rgba(34,197,94,0.5);
+  }
+  /* ─── ABOUT ─── */
+  #about {
+    padding: 100px 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr; gap: 5rem; align-items: center;
+  }
+  .about-avatar {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+    border: 3px solid rgba(79,70,229,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow);
+  }
+  .about-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* optional if you want a circular avatar */
+  }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--primary);
+    margin-bottom: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 16px; height: 2px; background: var(--primary); border-radius: 1px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    line-height: 1.15; color: var(--text); margin-bottom: 1rem;
+  }
+  .about-bio { color: var(--text-muted); font-size: 1.05rem; line-height: 1.75; max-width: 560px; margin-bottom: 2rem; }
+  .about-skills { display: flex; gap: 12px; flex-wrap: wrap; }
+  .skill-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .skill-chip:hover { border-color: var(--primary); color: var(--primary); background: rgba(79,70,229,0.04); }
+  .skill-icon { font-size: 0.9rem; }
+  /* ─── APPS ─── */
+  #apps { padding: 100px 1.5rem; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .apps-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .app-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  .app-card-header {
+    display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem;
+  }
+  .app-icon {
+    width: 72px; height: 72px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }  
+  .app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20%;
+  }
+  .app-icon-ww {
+    background: linear-gradient(135deg, #4F46E5, #818CF8);
+  }
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+  .app-icon-cr {
+    background: linear-gradient(135deg, #16A34A, #22C55E);
+  }
+  .app-meta { flex: 1; }
+  .app-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 700; color: var(--text);
+    letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.25rem;
+  }
+  .app-genre {
+    font-size: 0.78rem; color: var(--text-light); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600;
+  }
+  .app-screenshot-row {
+    display: flex; gap: 8px; margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .app-screenshot {
+    flex: 1; height: 120px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+    border: 1px solid var(--border);
+  }
+  .app-screenshot-ww {
+    background: linear-gradient(145deg, #EEF2FF, #E0E7FF);
+  }
+  .app-screenshot-cr {
+    background: linear-gradient(145deg, #F0FDF4, #DCFCE7);
+  }
+  .app-screenshot-ww-2 {
+    background: linear-gradient(145deg, #E0E7FF, #C7D2FE);
+  }
+  .app-screenshot-cr-2 {
+    background: linear-gradient(145deg, #DCFCE7, #BBF7D0);
+  }
+  .app-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  .app-features { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.5rem; }
+  .app-features li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+  .feature-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  .feature-dot-ww { background: var(--primary); }
+  .feature-dot-cr { background: var(--accent); }
+  .app-card-btns { display: flex; gap: 8px; }
+  .btn-sm {
+    padding: 0.55rem 1rem; font-size: 0.84rem;
+    border-radius: 100px; font-family: var(--font-body);
+    font-weight: 500; text-decoration: none;
+    cursor: pointer; border: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-sm-primary { background: var(--primary); color: white; }
+  .btn-sm-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,70,229,0.3); }
+  .btn-sm-ghost {
+    background: transparent; color: var(--text-muted);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-sm-ghost:hover { background: var(--bg); color: var(--text); transform: translateY(-1px); }
+  .btn-sm-accent { background: var(--accent); color: white; }
+  .btn-sm-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(34,197,94,0.3); }
+  /* ─── SUPPORT ─── */
+  #support { padding: 100px 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+  .support-grid {
+    max-width: 800px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .support-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: all 0.25s;
+    text-align: center;
+  }
+  .support-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .support-icon {
+    width: 60px; height: 60px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem; margin: 0 auto 1rem;
+  }
+  .support-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20%;
+  }
+  .support-icon-ww { background: linear-gradient(135deg, #4F46E5, #818CF8); }
+  .support-icon-cr { background: linear-gradient(135deg, #16A34A, #22C55E); }
+  .support-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--text); }
+  .support-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5; }
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(15,23,42,0.5);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    max-width: 600px; width: 100%;
+    max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+    transform: translateY(16px) scale(0.97);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-header {
+    padding: 1.75rem 1.75rem 0;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    position: sticky; top: 0; background: var(--surface); z-index: 1;
+    border-bottom: 1px solid var(--border); padding-bottom: 1.25rem;
+  }
+  .modal-close {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--surface2); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--text-muted);
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { background: var(--border); }
+  .modal-body { padding: 1.75rem; }
+  .modal-screenshots {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem;
+  }
+  .modal-screenshot {
+    height: 160px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    border: 1px solid var(--border);
+  }
+  .modal-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.25rem; }
+  .modal-features { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+  .modal-features li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; color: var(--text);
+    padding: 0.5rem 0.75rem;
+    background: var(--bg); border-radius: var(--radius-sm);
+  }
+  .modal-btns { display: flex; gap: 10px; }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 1.5rem;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem;
+  }
+  .footer-brand {
+    font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+    color: white; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+  }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.6; }
+  .footer-heading { font-family: var(--font-display); font-weight: 700; color: white; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    font-size: 0.875rem; color: rgba(255,255,255,0.6); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: white; }
+  .footer-email { font-size: 0.875rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+  .footer-email a { color: var(--primary-light); text-decoration: none; }
+  .footer-email a:hover { color: white; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+  }
+  .social-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); }
+  .footer-bottom {
+    max-width: 1100px; margin: 2rem auto 0;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.35);
+  }
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.1s; }
+  .fade-up-delay-2 { transition-delay: 0.2s; }
+  .fade-up-delay-3 { transition-delay: 0.3s; }
+  .fade-up-delay-4 { transition-delay: 0.4s; }
+  /* Hero entrance */
+  .hero-content-inner > * { opacity: 0; transform: translateY(20px); animation: heroIn 0.6s ease forwards; }
+  .hero-content-inner > :nth-child(1) { animation-delay: 0.1s; }
+  .hero-content-inner > :nth-child(2) { animation-delay: 0.2s; }
+  .hero-content-inner > :nth-child(3) { animation-delay: 0.3s; }
+  .hero-content-inner > :nth-child(4) { animation-delay: 0.45s; }
+  .hero-phones { opacity: 0; animation: heroIn 0.8s ease 0.4s forwards; }
+  @keyframes heroIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-phones { height: 280px; margin: 0 auto; order: -1; }
+    .hero-subtitle { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .phone { width: 120px; height: 240px; }
+    .phone-1 { transform: rotate(-6deg) translateX(-40px) translateY(5px); }
+    .phone-2 { transform: rotate(4deg) translateX(40px) translateY(-5px); }
+    @keyframes float1 {
+      0%, 100% { transform: rotate(-6deg) translateX(-40px) translateY(5px); }
+      50% { transform: rotate(-6deg) translateX(-40px) translateY(-6px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: rotate(4deg) translateX(40px) translateY(-5px); }
+      50% { transform: rotate(4deg) translateX(40px) translateY(6px); }
+    }
+    .about-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .about-avatar { margin: 0 auto; }
+    .about-skills { justify-content: center; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .support-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+    .modal-screenshots { grid-template-columns: repeat(2, 1fr); }
+    .modal-screenshots .modal-screenshot:last-child { display: none; }
+  }
+  @media (max-width: 480px) {
+    .app-card-btns { flex-direction: column; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .modal-btns { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Justin Hennis</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="aboutme.html">About Me</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+<!-- NAV -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-dot" aria-hidden="true"></span>
+      Hennis Studios
+    </a>
+    <ul style="margin-top: 20px;" class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#support">Support</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Justin Hennis</h2>
-							<p>Software Engineer &<br />
-							Aspiring Cybersecurity Analyst<br />
-							view my <a href="https://github.com/JustinHennis1">Github</a>.</p>
-							<ul class="actions special">
-								<li><a href="#footer" class="button primary">Follow</a></li>
-							</ul>
-						</div>
-						<a href="#one" class="more scrolly">Learn More</a>
-					</section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#apps" class="mobile-link">Apps</a>
+  <a href="#support" class="mobile-link">Support</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 alt">
-						<div class="inner" style="padding: 3em 0;">
-							<header class="major">
-								<h2>Bridging Creativity and Technology</h2>
-								<p>Explore my journey from concept to creation</p>
-							</header>
-							<ul class="features" style="padding: 2em 0;">
-								<li class="icon solid fa-code style1" >
-									<h3>Software Development</h3>
-									<p>Crafting efficient and innovative solutions</p>
-								</li>
-								<li class="icon solid fa-shield-alt style2" >
-									<h3>Cybersecurity</h3>
-									<p>Protecting digital assets and ensuring data integrity</p>
-								</li>
-								<li class="icon solid fa-lightbulb style3" >
-									<h3>Problem Solving</h3>
-									<p>Tackling complex challenges with creative approaches</p>
-								</li>
-							</ul>
-						</div>
-					</section>
+<!-- HERO -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-content-inner">
+      <div class="hero-tag" aria-hidden="true">
+        <span class="hero-tag-dot"></span>
+        Independent Developer
+      </div>
+      <h1 id="hero-title" class="hero-title">
+        Hennis<span> Studios</span>
+      </h1>
+      <p class="hero-subtitle">
+        Crafting polished, engaging mobile experiences that challenge players and deliver fun every single day.
+      </p>
+      <div class="hero-btns">
+        <a href="#apps" class="btn btn-primary" aria-label="Explore my apps">
+          Explore My Apps
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary" aria-label="Contact or support">
+          Contact / Support
+        </a>
+      </div>
+    </div>
+    <div class="hero-phones" aria-label="App mockups" role="img">
+      <div class="phone phone-1">
+        <div class="phone-notch" aria-hidden="true"></div>
+		<img src="assets/wordworks/preview.png" />
 
-				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div class="image ml-10"><img src="images/hofstra.jpg" alt="" /></div>
-							<div class="content">
-								<h2>Major in Computer <br />
-									Science & Cybersecurity</h2>
-								<p>Having taken Fundamentals of Cybersecurity and Ethical Hacking at Hofstra University, I have gained theoretical knowledge and experience understanding the characteristics of a secure system and how best to remediate.</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/hack.jpeg" alt="" /></div><div class="content">
-								<h2>Hackathon Winner<br />
-								</h2>
-								<p>Everyone wants to bring their ideas to life and what 
-									better place to do that then in a hackathon. 
-									My peers and I collaborated in the WiCyS Hackynology Competition
-									at Hofstra and won FIRST place with the title of "Best Overall Hack".
-								</p>
-								<br/>
-								<ul class="actions stacked">
-								<li><p> To try our project click: </p></li> 
-								<li><a href="https://traverse.justinhennis.com" class="button fit primary">Traverse</a><li>
+      </div>
+      <div class="phone phone-2">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <img src="cityrun/assets/screenshot-1.png"/>
+    </div>
+  </div>
+</section>
 
-								
-								</ul>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/me.jpg" alt="" /></div><div class="content">
-								<h2>Problem Solver<br />
-								with an entrepreneurial spirit</h2>
-								<p>Driven by curiosity and fueled by innovation, I approach each challenge as an opportunity to create meaningful solutions. My goal is to leverage technology to make a positive impact on the world, one line of code at a time.</p>
-							</div>
-						</section>
-					</section>
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-title">
+  <div class="about-inner">
+    <div class="about-avatar fade-up" aria-hidden="true">
+		<img src="images/bwme.png"/>
+	</div>
+    <div>
+      <div class="section-label fade-up">About the Developer</div>
+      <h2 id="about-title" class="section-title fade-up fade-up-delay-1">Built with care,<br/>one app at a time.</h2>
+      <p class="about-bio fade-up fade-up-delay-2">
+        I build engaging and polished mobile experiences designed to challenge players and provide fun daily entertainment. Every detail — from the first pixel to the final interaction — is crafted with intention. My apps are designed to be as enjoyable to look at as they are to play.
+      </p>
+      <div class="about-skills fade-up fade-up-delay-3">
+        <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📱</span> Mobile Development</span>
+        <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🎮</span> Game Design</span>
+        <span class="skill-chip"><span class="skill-icon" aria-hidden="true">✨</span> User Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-				<!-- Three-->
-				 <section id="three" class="wrapper style2 special">
-					<div class="cont">
-						<div class="carousel-container">
-							<div class="carousel">
-							  <a href="https://github.com/Flowalyze/FlowDefend"><img src="./images/flowdefend.png"></a>
-							  <a href="https://movidex.justinhennis.com/"><img src="./images/movidex.png"></a>
-							  <a href="https://traverse.justinhennis.com/"><img src="./images/traverse.png"></a>
-							  <a href="https://github.com/JustinHennis1/VULN"><img src="./images/vulnback.jpeg"></a>
-							  <a href="https://github.com/JustinHennis1/Gambit"><img src="./images/gambit.png"></a>
-							  
-							  <!-- Duplicate images for seamless transition -->
-							  <a href="https://github.com/Flowalyze/FlowDefend"><img src="./images/flowdefend.png"></a>
-							  <a href="https://movidex.justinhennis.com/"><img src="./images/movidex.png"></a>
-							  <a href="https://traverse.justinhennis.com/"><img src="./images/traverse.png"></a>
-							  <a href="https://github.com/JustinHennis1/VULN"><img src="./images/vulnback.jpeg"></a>
-							  <a href="https://github.com/JustinHennis1/Gambit"><img src="./images/gambit.png"></a>
-							</div>
-						  </div>
-						</div>
-				 </section>
+<!-- APPS SHOWCASE -->
+<section id="apps" aria-labelledby="apps-title">
+  <div class="section-header">
+    <div class="section-label fade-up">The Collection</div>
+    <h2 id="apps-title" class="section-title fade-up fade-up-delay-1">Two apps. One developer.<br/>All passion.</h2>
+  </div>
+  <div class="apps-grid">
 
-				<!-- Four -->
-					<section id="four" class="wrapper style2 special">
-						<div class="inner">
-							<header class="major">
-								<h2>FAQ</h2>
-								<p>Here are some answers to some commonly asked<br />
-								questions that you may or may not have about me.</p>
-							</header>
-							<ul class="features">
-								<li class="icon solid fa-question">
-									<h3>Why did you choose this career path?</h3>
-									<p>I've always been fascinated by technology and its potential to solve complex problems. The ever-evolving nature of computer science and cybersecurity challenges me to continuously learn and adapt, which I find incredibly rewarding.</p>
-								</li>
-								<li class="icon solid fa-question">
-									<h3>What's your favorite part of coding?</h3>
-									<p>My favorite part of coding is the problem-solving aspect. I love the feeling of finally cracking a difficult problem or optimizing a piece of code. It's like solving a puzzle, and the satisfaction of seeing your solution work is unparalleled.</p>
-								</li>
-								<li class="icon solid fa-question">
-									<h3>What programming languages are you skilled at?</h3>
-									<p>I'm proficient in several languages including Python, Java, and C++. I also have experience with web technologies like HTML, CSS, and JavaScript. I'm always eager to learn new languages and frameworks as needed for projects.</p>
-								</li>
-								<li class="icon solid fa-question">
-									<h3>How do you stay updated with tech trends?</h3>
-									<p>I stay current by regularly reading tech blogs, participating in online forums, attending webinars, and experimenting with new technologies in personal projects. Continuous learning is crucial in this fast-paced field.</p>
-								</li>
-							</ul>
-						</div>
-					</section>
+    <!-- APP 1: Word Works -->
+    <article class="app-card fade-up fade-up-delay-1" aria-labelledby="ww-name">
+      <div class="app-card-header">
+        <div class="app-icon app-icon-ww" role="img" aria-label="Word Works icon">
+			<img src="images/ww-icon.png"/>
+		</div>
+        <div class="app-meta">
+          <h3 id="ww-name" class="app-name">Word Works<br/>Unscramble</h3>
+          <div class="app-genre">Word Puzzle • Brain Training</div>
+        </div>
+      </div>
 
-				<!-- CTA -->
-					<section id="cta" class="wrapper style4">
-						<div class="inner" style="align-items: center; justify-content: center; border-bottom: .5px dotted white;" >
-								<h2 >Follow Me on Social Media!</h2>
-						</div>
-					</section>
+      <p class="app-desc">
+        A fun and challenging word puzzle game where players unscramble letters to form words. Improve vocabulary and problem-solving skills while enjoying relaxing gameplay.
+      </p>
+      <ul class="app-features" aria-label="Key features">
+        <li><span class="feature-dot feature-dot-ww" aria-hidden="true"></span>Hundreds of word puzzles</li>
+        <li><span class="feature-dot feature-dot-ww" aria-hidden="true"></span>Increasing difficulty levels</li>
+        <li><span class="feature-dot feature-dot-ww" aria-hidden="true"></span>Clean and relaxing UI</li>
+        <li><span class="feature-dot feature-dot-ww" aria-hidden="true"></span>Great for brain training</li>
+      </ul>
+      <div class="app-card-btns">
+        <button class="btn-sm btn-sm-primary" onclick="openModal('ww')" aria-label="View Word Works details">Learn More</button>
+        <a href="#support" class="btn-sm btn-sm-ghost" aria-label="Word Works support page">Support</a>
+        <a href="https://apps.apple.com/us/app/word-works-unscramble/id6761067322" target="_blank" class="btn-sm btn-sm-ghost" aria-label="Word Works on App Store">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1l1.5 3H9l-1.2 1.5.5 2.5L6 6.5 3.7 8l.5-2.5L3 4H4.5L6 1z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+          App Store
+        </a>
+      </div>
+    </article>
 
-				<!-- Footer -->
-					<footer id="footer" style="background-color: transparent; padding-top: 2em;">
-						<ul class="icons" style="font-size: 1.25em;">
-							<li><a href="https://www.linkedin.com/in/justin-hennis" class="icon brands fa-linkedin fa-lg"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://x.com/NightFlamefire" class="icon brands fa-twitter fa-lg"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.facebook.com/justin.hennis.33" class="icon brands fa-facebook-f fa-lg"><span class="label">Facebook</span></a></li>
-							<li><a href="https://www.instagram.com/justin_hennis/?hl=en" class="icon brands fa-instagram fa-lg"><span class="label">Instagram</span></a></li>
-							<li><a href="https://github.com/JustinHennis1" class="icon brands fa-github fa-lg"><span class="label">GitHub</span></a></li>
-							<li><a href="mailto:15hennisjustin@gmail.com" class="icon solid fa-envelope fa-lg"><span class="label">Email</span></a></li>
-						</ul>
-					</footer>
+    <!-- APP 2: City Run -->
+    <article class="app-card fade-up fade-up-delay-2" aria-labelledby="cr-name">
+      <div class="app-card-header">
+        <div class="app-icon app-icon-cr" role="img" aria-label="City Run icon">
+			<img src="images/cr-icon.png"/>
+		</div>
+        <div class="app-meta">
+          <h3 id="cr-name" class="app-name">City Run<br/>Rat Attack</h3>
+          <div class="app-genre">Arcade Runner • Action</div>
+        </div>
+      </div>
+      <p class="app-desc">
+        A fast-paced arcade runner where players navigate a chaotic city while avoiding obstacles and escaping attacking rats. Designed for quick reflex gameplay and addictive challenge.
+      </p>
+      <ul class="app-features" aria-label="Key features">
+        <li><span class="feature-dot feature-dot-cr" aria-hidden="true"></span>Endless runner gameplay</li>
+        <li><span class="feature-dot feature-dot-cr" aria-hidden="true"></span>City-themed environment</li>
+        <li><span class="feature-dot feature-dot-cr" aria-hidden="true"></span>Increasing difficulty</li>
+        <li><span class="feature-dot feature-dot-cr" aria-hidden="true"></span>Fast reflex action</li>
+      </ul>
+      <div class="app-card-btns">
+        <button class="btn-sm btn-sm-accent" onclick="openModal('cr')" aria-label="View City Run details">Learn More</button>
+        <a href="#support" class="btn-sm btn-sm-ghost" aria-label="City Run support page">Support</a>
+        <a href="https://apps.apple.com/us/app/city-run-rat-attack/id6759535184" target="_blank" class="btn-sm btn-sm-ghost" aria-label="City Run on App Store" >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1l1.5 3H9l-1.2 1.5.5 2.5L6 6.5 3.7 8l.5-2.5L3 4H4.5L6 1z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+          App Store
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
 
-			</div>
+<!-- SUPPORT -->
+<section id="support" aria-labelledby="support-title">
+  <div class="section-header">
+    <div class="section-label fade-up">Help Center</div>
+    <h2 id="support-title" class="section-title fade-up fade-up-delay-1">We've got you covered.</h2>
+    <p style="color:var(--text-muted);max-width:480px;margin:0 auto;font-size:0.95rem;line-height:1.6;" class="fade-up fade-up-delay-2">
+      Questions about an app? Reach out via the dedicated support pages below.
+    </p>
+  </div>
+  <div class="support-grid">
+    <div class="support-card fade-up fade-up-delay-1">
+      <div class="support-icon support-icon-ww" role="img" aria-label="Word Works icon">
+		<img src="images/ww-icon.png"/>
+	  </div>
+      <div class="support-name">Word Works Support</div>
+      <p class="support-desc">Get help with puzzles, account issues, or feedback for Word Works - Unscramble.</p>
+      <a href="https://justinhennis.com/wordworks.html" class="btn btn-primary" style="font-size:0.85rem;padding:0.5rem 1.1rem;">Open Support Page</a>
+    </div>
+    <div class="support-card fade-up fade-up-delay-2">
+      <div class="support-icon support-icon-cr" role="img" aria-label="City Run icon">
+		<img src="images/cr-icon.png"/>
+	  </div>
+      <div class="support-name">City Run Support</div>
+      <p class="support-desc">Need help with City Run - Rat Attack? Report bugs or ask us anything here.</p>
+      <a href="https://justinhennis.com/cityrun/cityrun.html" class="btn btn-accent" style="font-size:0.85rem;padding:0.5rem 1.1rem;">Open Support Page</a>
+    </div>
+  </div>
+</section>
 
-		<!-- Scripts -->
+<!-- FOOTER / CONTACT -->
+<footer id="contact" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Hennis Studios</div>
+      <p class="footer-tagline">Hand-crafted mobile games<br/>built with care and passion.</p>
+      <div class="footer-socials" style="margin-top:1.25rem">
+        <a href="https://github.com/JustinHennis1" class="icon brands fa-github fa-lg" aria-label="GitHub" ></a>
+        <a href="https://x.com/NightFlamefire" class="icon brands fa-twitter fa-lg" aria-label="Twitter / X" ></a>
+        <a href="https://www.linkedin.com/in/justin-hennis" class="icon brands fa-linkedin fa-lg" aria-label="LinkedIn" ></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Apps</div>
+      <ul class="footer-links" role="list">
+        <li><a href="#apps">Word Works - Unscramble</a></li>
+        <li><a href="#apps">City Run - Rat Attack</a></li>
+        <li><a href="#support">Support Center</a></li>
+      </ul>
+    </div>
+    <div id="contact-info">
+      <div class="footer-heading">Contact</div>
+      <p class="footer-email">📧 <a href="mailto:15hennisjustin@gmail.com">Email Me</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Hennis Studios. All rights reserved.</span>
+  </div>
+</footer>
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <div id="modal-header-content"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body-content"></div>
+  </div>
+</div>
 
-	</body>
+<script>
+  // ── NAV scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Modal data
+  const modalData = {
+    ww: {
+      header: `<div style="display:flex;align-items:center;gap:12px">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#4F46E5,#818CF8);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🔤</div>
+        <div><div id="modal-title" style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--text)">Word Works — Unscramble</div><div style="font-size:0.78rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Word Puzzle · Brain Training</div></div>
+      </div>`,
+      body: `
+      <p class="modal-desc">A fun and challenging word puzzle game where players unscramble letters to form words. Designed to improve vocabulary and problem-solving skills while providing relaxing gameplay. With hundreds of unique puzzles and a clean, satisfying interface, Word Works is perfect for a quick mental workout or a long relaxing session.</p>
+      <p style="font-family:var(--font-display);font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.75rem">Gameplay Highlights</p>
+      <ul class="modal-features">
+        <li>🔤 Hundreds of unique word puzzles</li>
+        <li>📈 Smoothly increasing difficulty</li>
+        <li>🎨 Clean, distraction-free interface</li>
+        <li>🧠 Great daily brain training tool</li>
+        <li>⚡ Quick play sessions — perfect for commuting</li>
+      </ul>
+      <div class="modal-btns">
+        <a href="#support" onclick="closeModal()" class="btn-sm btn-sm-primary">View Support Page</a>
+        <a href="https://apps.apple.com/us/app/word-works-unscramble/id6761067322" target="_blank"  class="btn-sm btn-sm-ghost">View on App Store</a>
+      </div>`
+    },
+    cr: {
+      header: `<div style="display:flex;align-items:center;gap:12px">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#16A34A,#22C55E);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🏃</div>
+        <div><div id="modal-title" style="font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--text)">City Run — Rat Attack</div><div style="font-size:0.78rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Arcade Runner · Action</div></div>
+      </div>`,
+      body: `
+      <p class="modal-desc">A fast-paced arcade runner where players navigate a chaotic city while avoiding obstacles and escaping relentless attacking rats. Built for quick reflex gameplay and addictive challenge. The city grows more dangerous as you run further — do you have what it takes to set the high score?</p>
+      <p style="font-family:var(--font-display);font-weight:700;font-size:0.9rem;color:var(--text);margin-bottom:0.75rem">Gameplay Highlights</p>
+      <ul class="modal-features">
+        <li>🏙️ Stunning endless city environment</li>
+        <li>🐀 Increasingly aggressive rat swarms</li>
+        <li>📈 Dynamic difficulty scaling</li>
+        <li>⚡ Instant pick-up-and-play action</li>
+        <li>🏆 Leaderboard and personal bests</li>
+      </ul>
+      <div class="modal-btns">
+        <a href="#support" onclick="closeModal()" class="btn-sm btn-sm-accent">View Support Page</a>
+        <a href="https://apps.apple.com/us/app/city-run-rat-attack/id6759535184" target="_blank"  class="btn-sm btn-sm-ghost">View on App Store</a>
+      </div>`
+    }
+  };
+
+  function openModal(id) {
+    const data = modalData[id];
+    document.getElementById('modal-header-content').innerHTML = data.header;
+    document.getElementById('modal-body-content').innerHTML = data.body;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modalBox').scrollTop = 0;
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
 </html>

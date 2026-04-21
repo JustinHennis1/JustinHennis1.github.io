@@ -140,7 +140,6 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		-ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		transition: color 0.2s ease, border-bottom-color 0.2s ease;
-		border-bottom: dotted 1px;
 		color: inherit;
 		text-decoration: none;
 	}
@@ -3507,7 +3506,7 @@ input, select, textarea {
 
 /* Header */
 
-	#header {
+	/* #header {
 		-moz-transition: background-color 0.2s ease;
 		-webkit-transition: background-color 0.2s ease;
 		-ms-transition: background-color 0.2s ease;
@@ -3626,7 +3625,7 @@ input, select, textarea {
 			#header.alt h1 {
 				pointer-events: none;
 				opacity: 0;
-			}
+			} */
 
 /* Banner */
 
